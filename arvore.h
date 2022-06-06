@@ -24,6 +24,21 @@ Tree* criar_arvore(){
     return tree;
 }
 
+void liberarMemoria(No* no){
+    if(no == NULL){
+        return;
+    }
+
+    liberarMemoria(no -> esq);
+    liberarMemoria(no -> dir);
+
+    free(no);
+}
+
+void quantidadeElementos(Tree* tree){
+    printf("A arvore possui %d elementos\n", tree -> quant);
+}
+
 void imprimirEmOrdem(No* no){
     if(no != NULL){
         if (no -> esq != NULL)
@@ -210,4 +225,32 @@ void adicionar(Tree* tree,int valor,char *info){
         
         balancear(tree);
     }  
+}
+
+void remover(Tree* tree,int chave){
+
+}
+
+void buscarElemento(No* no,int chave){
+    No* aux;
+    aux = no;
+    
+    if (aux == NULL)
+    {
+        printf("Arvore vazia!\n");
+    }else{
+        do
+        {
+            if (aux -> chave > chave)
+            {
+                aux = aux -> esq;
+            }else if (aux -> chave < chave)
+            {
+                aux = aux -> dir;
+            }
+        } while (aux -> chave != chave);
+    }    
+    
+    printf("%d - %s\n",aux -> chave, aux -> info);
+    
 }
