@@ -251,8 +251,8 @@ No* remover(No* no,int chave){
                     aux = aux -> esq;
                 }
                 strcpy(no -> info,aux -> info);
-                no -> chave = aux -> chave;
-                no -> dir = remover(no -> dir, chave);
+                aux -> chave = chave;
+                no -> esq = remover(no -> esq, chave);
                 free(aux);
             }
         }
