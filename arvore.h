@@ -227,10 +227,99 @@ void adicionar(Tree* tree,int valor,char *info){
     }  
 }
 
-void remover(Tree* tree,int chave){
-
+No* remover(No* no,int chave){
+    if (no -> chave == chave)
+    {
+        if (no -> dir == NULL && no -> esq == NULL)
+        {
+            return NULL;
+        }else
+        {
+            if (no -> dir == NULL && no -> esq != NULL)
+            {
+                return no -> esq;
+            }else if (no -> dir != NULL && no -> esq == NULL)
+            {
+                return no -> dir;
+            }else
+            {
+                No* aux = no -> dir;
+                while (aux -> esq != NULL)
+                {
+                    aux = aux -> esq;
+                }
+                strcpy(no -> info,aux -> info);
+                aux -> chave = chave;
+                no -> dir = remover(no -> dir, chave);
+                free(aux);
+            }
+        }
+    }else
+    {
+        if (no -> chave > chave)
+        {
+            if (no -> esq != NULL)
+            {
+                no -> esq = remover(no -> esq, chave);
+            }
+        }else if (no -> chave < chave)
+        {
+            if (no -> dir != NULL)
+            {
+                no -> dir = remover(no -> dir, chave);
+            }
+        }
+    }
+    return no;  
 }
 
+/*void remover(No* no,int chave){
+    No* aux = no;
+    No* ant;
+
+    while (aux -> chave != chave){
+        if (aux -> chave > chave)
+        {
+            ant = aux;
+            aux = aux -> esq;
+        }else
+        {
+            ant = aux;
+            aux = aux -> dir;
+        }
+    }
+
+    if (aux -> dir == NULL && aux -> esq == NULL)
+    {
+        free(aux);
+    }else if(aux -> dir == NULL && aux -> esq != NULL)
+    {
+        if (ant -> dir == aux)
+        {
+            ant -> dir = aux -> esq;
+        }else
+        {
+            ant -> esq = aux -> esq;
+        }
+        free(aux);
+    }else if (aux -> dir != NULL && aux -> esq == NULL)
+    {
+        if (ant -> dir == aux)
+        {
+            ant -> dir = aux -> dir;
+        }else
+        {
+            ant -> esq = aux -> dir;
+        }
+        free(aux);
+    }else
+    {
+        
+    }
+    
+    
+}
+*/
 void buscarElemento(No* no,int chave){
     No* aux;
     aux = no;
