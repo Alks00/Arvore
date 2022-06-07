@@ -20,7 +20,8 @@ int main(int argc, char const *argv[])
         printf("6  - Quantidade de elementos\n");
         printf("7  - Buscar\n");
         printf("8  - Limpar Arvore\n");
-        printf("9  - Sair\n");
+        printf("9  - Mostrar arvore\n");
+        printf("10 - Sair\n");
         scanf("%d",&opc);
         switch (opc)
         {
@@ -59,16 +60,19 @@ int main(int argc, char const *argv[])
             printf("Digite a chave:\n");
             scanf("%d", &chave);
 
-            buscarElemento(tree->raiz, chave);
+            buscarElemento(tree -> raiz, chave);
             break;
         case 8:
             liberarMemoria(tree -> raiz);
+        break;
+        case 9:
+            mostraArvore(tree -> raiz, 0);
         break;
         
         default:
             break;
         }
-    } while (opc < 9);
+    } while (opc < 10);
 
     return 0;
 }
