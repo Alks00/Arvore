@@ -59,6 +59,20 @@ void imprimirEmOrdem(No* no){
     }
 }
 
+void imprimeNo(int chave, int b) {
+    for (int i = 0; i < b; i++) printf("   ");
+    printf("%d\n", chave);
+}
+
+void mostraArvore(No* no, int b) {
+    if (no == NULL) {
+        return;
+    }
+    mostraArvore(no->dir, b+1);
+    imprimeNo(no->chave, b);
+    mostraArvore(no->esq, b+1);
+}
+
 int altura(No* no){
     int altura_esq = 0, altura_dir = 0;
 
