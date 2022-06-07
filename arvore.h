@@ -13,14 +13,13 @@ typedef struct no
 
 typedef struct arvore
 {
-    int quant;
     No *raiz;
 }Tree;
 
 Tree* criar_arvore(){
     Tree* tree = (Tree*)malloc(sizeof(Tree));
     tree -> raiz = NULL;
-    tree -> quant = 0;
+    //tree -> quant = 0;
     return tree;
 }
 
@@ -35,8 +34,13 @@ void liberarMemoria(No* no){
     free(no);
 }
 
-void quantidadeElementos(Tree* tree){
-    printf("A arvore possui %d elementos\n", tree -> quant);
+int quantidadeElementos(No* no){
+    if (no == NULL)
+		return 0;
+	else
+	{
+		return quantidadeElementos(no -> esq) + 1 + quantidadeElementos(no -> dir);
+	}
 }
 
 void imprimirEmOrdem(No* no){
@@ -216,11 +220,9 @@ void adicionar(Tree* tree,int valor,char *info){
         if (valor < aux -> chave)
         {
             aux -> esq = no;
-            tree -> quant++;
         }else if (valor > aux -> chave)
         {
             aux -> dir = no;
-            tree -> quant++;
         }
         
         balancear(tree);
@@ -249,7 +251,7 @@ No* remover(No* no,int chave){
                     aux = aux -> esq;
                 }
                 strcpy(no -> info,aux -> info);
-                aux -> chave = chave;
+                no -> chave = aux -> chave;
                 no -> dir = remover(no -> dir, chave);
                 free(aux);
             }
@@ -273,53 +275,6 @@ No* remover(No* no,int chave){
     return no;  
 }
 
-/*void remover(No* no,int chave){
-    No* aux = no;
-    No* ant;
-
-    while (aux -> chave != chave){
-        if (aux -> chave > chave)
-        {
-            ant = aux;
-            aux = aux -> esq;
-        }else
-        {
-            ant = aux;
-            aux = aux -> dir;
-        }
-    }
-
-    if (aux -> dir == NULL && aux -> esq == NULL)
-    {
-        free(aux);
-    }else if(aux -> dir == NULL && aux -> esq != NULL)
-    {
-        if (ant -> dir == aux)
-        {
-            ant -> dir = aux -> esq;
-        }else
-        {
-            ant -> esq = aux -> esq;
-        }
-        free(aux);
-    }else if (aux -> dir != NULL && aux -> esq == NULL)
-    {
-        if (ant -> dir == aux)
-        {
-            ant -> dir = aux -> dir;
-        }else
-        {
-            ant -> esq = aux -> dir;
-        }
-        free(aux);
-    }else
-    {
-        
-    }
-    
-    
-}
-*/
 void buscarElemento(No* no,int chave){
     No* aux;
     aux = no;
