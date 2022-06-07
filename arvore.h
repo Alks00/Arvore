@@ -181,8 +181,8 @@ void balancear(Tree* tree){
 }
 
 void adicionar(Tree* tree,int valor,char *info){
-    no* proxNo = NULL;
-    no* aux = NULL;
+    No* proxNo = NULL;
+    No* aux = NULL;
 
 
     No* no = (No*)malloc(sizeof(No));
