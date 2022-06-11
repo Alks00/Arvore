@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
             printf("Digite o codigo:\n");
             scanf("%d",&chave);
             getchar();
-            printf("Digite o nome:\n");
+            printf("Digite o nome do produto:\n");
             gets(info);
             printf("\n\n");
             adicionar(tree,chave,info);
@@ -67,7 +67,7 @@ int main(int argc, char const *argv[])
         break;
         case 9:
             mostraArvore(tree -> raiz, 0);
-        break;
+            break;
         
         default:
             break;

@@ -19,7 +19,6 @@ typedef struct arvore
 Tree* criar_arvore(){
     Tree* tree = (Tree*)malloc(sizeof(Tree));
     tree -> raiz = NULL;
-    //tree -> quant = 0;
     return tree;
 }
 
